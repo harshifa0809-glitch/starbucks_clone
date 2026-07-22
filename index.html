@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starbucks Coffee Company</title>
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts & ALL CSS STYLING -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap");
+
+      :root {
+        --sb-green: #006241;
+        --sb-dark: #1e3932;
+        --sb-cream: #d4e9e2;
+        --sb-black: #000000;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      body {
+        background-color: #ffffff;
+        color: #000;
+        overflow-x: hidden;
+      }
+
+      /* NAVBAR STYLING */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 3rem;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-left,
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .logo {
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: 50%;
+        object-fit: contain;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--sb-black);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--sb-green);
+      }
+
+      .find-store {
+        text-decoration: none;
+        color: var(--sb-black);
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* BUTTONS */
+      .btn {
+        padding: 8px 18px;
+        border-radius: 50px;
+        border: 1px solid black;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-outline {
+        background: transparent;
+      }
+      .btn-outline:hover {
+        background: #f2f2f2;
+      }
+
+      .btn-black {
+        background: black;
+        color: white;
+      }
+      .btn-black:hover {
+        background: #333;
+      }
+
+      .btn-pill,
+      .btn-pill-dark {
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 22px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 14px;
+        transition: transform 0.2s;
+      }
+
+      .btn-pill {
+        border: 1px solid white;
+        color: white;
+      }
+      .btn-pill:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .btn-pill-dark {
+        border: 1px solid var(--sb-dark);
+        color: var(--sb-dark);
+        background: transparent;
+      }
+      .btn-pill-dark:hover {
+        transform: translateY(-2px);
+        background: var(--sb-dark);
+        color: white;
+      }
+
+      /* BANNER SECTIONS */
+      .promo-box {
+        display: flex;
+        align-items: center;
+        margin: 20px auto;
+        max-width: 1200px;
+        background-color: var(--sb-dark);
+        color: white;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .promo-box.reverse {
+        flex-direction: row-reverse;
+        background-color: var(--sb-cream);
+        color: var(--sb-dark);
+      }
+
+      .promo-content {
+        flex: 1;
+        padding: 3rem;
+        text-align: center;
+      }
+
+      .promo-content h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .promo-content p {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .promo-image {
+        flex: 1;
+        max-width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f2f2f2;
+      }
+
+      .promo-image img {
+        width: 100% !important;
+        max-height: 380px !important;
+        object-fit: cover !important;
+        display: block;
+      }
+
+      /* FEATURE CARDS SECTION */
+      .features-section {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .features-section h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 25px;
+        color: var(--sb-dark);
+      }
+
+      .card-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 25px !important;
+        flex-wrap: wrap !important;
+      }
+
+      .card {
+        width: 140px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 110px !important;
+        height: 110px !important;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .card p {
+        font-weight: 700;
+        color: #222;
+        font-size: 14px;
+      }
+
+      /* FOOTER */
+      .footer {
+        text-align: center;
+        padding: 25px;
+        background-color: #f7f7f7;
+        margin-top: 40px;
+        font-size: 13px;
+        color: #555;
+        border-top: 1px solid #eee;
+      }
+
+      /* MOBILE RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 1rem;
+        }
+        .promo-box,
+        .promo-box.reverse {
+          flex-direction: column-reverse;
+        }
+        .promo-image {
+          max-width: 100%;
+          width: 100%;
+        }
+        .promo-image img {
+          max-height: 250px !important;
+        }
+        .nav-links,
+        .find-store {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <!-- Official Starbucks Green SVG Logo -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg"
+          alt="Starbucks Logo"
+          class="logo"
+        />
+        <ul class="nav-links">
+          <li><a href="#">MENU</a></li>
+          <li><a href="#">REWARDS</a></li>
+          <li><a href="#">GIFT CARDS</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="find-store"
+          ><i class="fa-solid fa-location-dot"></i> Find a store</a
+        >
+        <button class="btn btn-outline" id="signin-btn">Sign in</button>
+        <button class="btn btn-black" id="join-btn">Join now</button>
+      </div>
+    </nav>
+
+    <!-- BANNER 1 -->
+    <section class="promo-box green-bg">
+      <div class="promo-content">
+        <h1>Summer Refreshers</h1>
+        <p>Cool off with vibrant flavors and handcrafted espresso drinks.</p>
+        <a href="#" class="btn btn-pill action-btn">Order now</a>
+      </div>
+      <div class="promo-image">
+        <img src="images/feature1.png" alt="Starbucks Drink" />
+      </div>
+    </section>
+
+    <!-- BANNER 2 -->
+    <section class="promo-box reverse cream-bg">
+      <div class="promo-content">
+        <h1>Personalized Rewards</h1>
+        <p>Earn free drinks, food, and customization options when you join.</p>
+        <a href="#" class="btn btn-pill-dark action-btn">Learn more</a>
+      </div>
+      <div class="promo-image">
+        <img src="images/feature2.png" alt="Rewards Banner" />
+      </div>
+    </section>
+
+    <!-- FEATURED SECTION (CARDS) -->
+    <section class="features-section">
+      <h2>Handcrafted Curations</h2>
+      <div class="card-grid">
+        <div class="card">
+          <img src="images/feature1.png" alt="Bestsellers" />
+          <p>Bestsellers</p>
+        </div>
+        <div class="card">
+          <img src="images/feature2.png" alt="Drinks" />
+          <p>Drinks</p>
+        </div>
+        <div class="card">
+          <img src="images/feature3.png" alt="Food" />
+          <p>Food</p>
+        </div>
+        <div class="card">
+          <img src="images/feature4.png" alt="Merchandise" />
+          <p>Merchandise</p>
+        </div>
+        <div class="card">
+          <img src="images/feature5.png" alt="Coffee At Home" />
+          <p>Coffee At Home</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2026 Starbucks Coffee Company. All rights reserved.</p>
+    </footer>
+
+    <!-- INTEGRATED JAVASCRIPT -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Interactive Button Alerts
+        const actionButtons = document.querySelectorAll(
+          ".action-btn, #signin-btn, #join-btn",
+        );
+        actionButtons.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            alert("Starbucks Clone: Interactivity is active!");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
