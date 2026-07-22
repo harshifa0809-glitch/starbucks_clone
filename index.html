@@ -8,8 +8,288 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
-  <!-- External CSS File -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: SoDoSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .logo {
+      width: 51px;
+      height: 51px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .find-store {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 600;
+      font-size: 14px;
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-signin {
+      border: 1px solid #000000;
+      padding: 7px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: #000000;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .btn-join {
+      background: #000000;
+      color: #ffffff;
+      padding: 7px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* SUB-BANNER */
+    .top-subbanner {
+      background-color: #1e3932;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 24px;
+      font-weight: 700;
+      font-size: 19px;
+    }
+
+    .btn-start-order {
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      padding: 8px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* BANNERS CONTAINER */
+    .banner-container {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-top: 32px;
+    }
+
+    .banner-row {
+      display: flex;
+      width: 100%;
+      min-height: 480px;
+    }
+
+    .banner-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .banner-img {
+      flex: 1;
+      width: 50%;
+      background-color: #f2f0eb;
+    }
+
+    .banner-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .banner-text {
+      flex: 1;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 48px;
+      background-color: #006241;
+      color: #ffffff;
+    }
+
+    .banner-text h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .banner-text p {
+      font-size: 19px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    .btn-order-now {
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      padding: 9px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      background: transparent;
+    }
+
+    .btn-order-now-filled {
+      background-color: #ffffff;
+      color: #006241;
+      padding: 9px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 48px 80px 24px;
+      background-color: #ffffff;
+      margin-top: 60px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .col h4 {
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #000000;
+    }
+
+    .col a {
+      display: block;
+      text-decoration: none;
+      color: #6b6b6b;
+      font-size: 16px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .col a:hover {
+      color: #000000;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e5e5e5;
+      margin-bottom: 32px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 28px;
+      margin-bottom: 24px;
+      color: #000000;
+    }
+
+    .privacy-links {
+      color: #212121;
+      font-size: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .privacy-links a {
+      color: #212121;
+      text-decoration: none;
+    }
+
+    .copyright {
+      color: #6b6b6b;
+      font-size: 13px;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        padding: 16px 20px;
+      }
+      .nav-links, .find-store {
+        display: none;
+      }
+
+      .banner-row, .banner-row.reverse {
+        flex-direction: column;
+      }
+
+      .banner-img, .banner-text {
+        width: 100%;
+      }
+
+      .footer {
+        padding: 32px 20px;
+      }
+
+      .footer-columns {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -42,7 +322,7 @@
     <!-- Banner 1 -->
     <section class="banner-row">
       <div class="banner-img">
-        <img src="images/feature1.png" alt="New Blended Energy Refreshers" onerror="this.onerror=null; this.src='images/feature1.jpg';">
+        <img src="images/feature1.png" alt="New Blended Energy Refreshers" onerror="this.onerror=null; this.src='feature1.png';">
       </div>
       <div class="banner-text">
         <h2>New Blended Energy Refreshers</h2>
@@ -54,7 +334,7 @@
     <!-- Banner 2 (Reverse) -->
     <section class="banner-row reverse">
       <div class="banner-img">
-        <img src="images/feature2.png" alt="Last chance for smores" onerror="this.onerror=null; this.src='images/feature2.jpg';">
+        <img src="images/feature2.png" alt="Last chance for smores" onerror="this.onerror=null; this.src='feature2.png';">
       </div>
       <div class="banner-text">
         <h2>Last chance for s’mores</h2>
@@ -66,7 +346,7 @@
     <!-- Banner 3 -->
     <section class="banner-row">
       <div class="banner-img">
-        <img src="images/feature3.png" alt="Starbucks summer" onerror="this.onerror=null; this.src='images/feature3.jpg';">
+        <img src="images/feature3.png" alt="Starbucks summer" onerror="this.onerror=null; this.src='feature3.png';">
       </div>
       <div class="banner-text">
         <h2>It’s Starbucks summer</h2>
@@ -77,7 +357,7 @@
     <!-- Banner 4 (Reverse) -->
     <section class="banner-row reverse">
       <div class="banner-img">
-        <img src="images/feature4.png" alt="Passionfruit Guava Refreshers" onerror="this.onerror=null; this.src='images/feature4.jpg';">
+        <img src="images/feature4.png" alt="Passionfruit Guava Refreshers" onerror="this.onerror=null; this.src='feature4.png';">
       </div>
       <div class="banner-text">
         <h2>New Passionfruit Guava Refreshers</h2>
@@ -89,7 +369,7 @@
     <!-- Banner 5 -->
     <section class="banner-row">
       <div class="banner-img">
-        <img src="images/feature5.png" alt="Protein Boost" onerror="this.onerror=null; this.src='images/feature5.jpg';">
+        <img src="images/feature5.png" alt="Protein Boost" onerror="this.onerror=null; this.src='feature5.png';">
       </div>
       <div class="banner-text">
         <h2>Go-to favorites + protein boost</h2>
