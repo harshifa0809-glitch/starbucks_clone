@@ -116,12 +116,110 @@
       font-weight: 600;
     }
 
+    /* DYNAMIC CAROUSEL SECTION */
+    .carousel-section {
+      position: relative;
+      max-width: 100%;
+      margin: 32px 0;
+      overflow: hidden;
+    }
+
+    .carousel-container {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      min-height: 480px;
+    }
+
+    .carousel-img {
+      flex: 1;
+      width: 50%;
+      background-color: #f2f0eb;
+    }
+
+    .carousel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-text {
+      flex: 1;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 48px;
+      background-color: #006241;
+      color: #ffffff;
+    }
+
+    .carousel-text h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .carousel-text p {
+      font-size: 19px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 30px;
+    }
+
+    /* CAROUSEL BUTTONS & DOTS */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 18px;
+      z-index: 10;
+    }
+
+    .carousel-btn.prev { left: 20px; }
+    .carousel-btn.next { right: 20px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: #ffffff;
+    }
+
     /* BANNERS CONTAINER */
     .banner-container {
       display: flex;
       flex-direction: column;
       gap: 32px;
-      padding-top: 32px;
     }
 
     .banner-row {
@@ -156,7 +254,7 @@
       align-items: center;
       text-align: center;
       padding: 48px;
-      background-color: #006241;
+      background-color: #1e3932;
       color: #ffffff;
     }
 
@@ -164,7 +262,6 @@
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 20px;
-      letter-spacing: 0.5px;
     }
 
     .banner-text p {
@@ -172,7 +269,6 @@
       line-height: 1.6;
       max-width: 500px;
       margin-bottom: 30px;
-      font-weight: 400;
     }
 
     .btn-order-now {
@@ -184,16 +280,6 @@
       font-weight: 600;
       font-size: 15px;
       background: transparent;
-    }
-
-    .btn-order-now-filled {
-      background-color: #ffffff;
-      color: #006241;
-      padding: 9px 22px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
     }
 
     /* FOOTER */
@@ -223,11 +309,6 @@
       color: #6b6b6b;
       font-size: 16px;
       margin-bottom: 16px;
-      line-height: 1.4;
-    }
-
-    .col a:hover {
-      color: #000000;
     }
 
     hr {
@@ -241,14 +322,12 @@
       gap: 20px;
       font-size: 28px;
       margin-bottom: 24px;
-      color: #000000;
     }
 
     .privacy-links {
       color: #212121;
       font-size: 14px;
       display: flex;
-      flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 16px;
     }
@@ -265,29 +344,12 @@
 
     /* MOBILE RESPONSIVE */
     @media screen and (max-width: 768px) {
-      .navbar {
-        padding: 16px 20px;
-      }
-      .nav-links, .find-store {
-        display: none;
-      }
-
-      .banner-row, .banner-row.reverse {
-        flex-direction: column;
-      }
-
-      .banner-img, .banner-text {
-        width: 100%;
-      }
-
-      .footer {
-        padding: 32px 20px;
-      }
-
-      .footer-columns {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
+      .navbar { padding: 16px 20px; }
+      .nav-links, .find-store { display: none; }
+      .carousel-slide, .banner-row, .banner-row.reverse { flex-direction: column; }
+      .carousel-img, .carousel-text, .banner-img, .banner-text { width: 100%; }
+      .footer { padding: 32px 20px; }
+      .footer-columns { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
 </head>
@@ -316,73 +378,71 @@
     <a href="#" class="btn-start-order">Start an order</a>
   </div>
 
+  <!-- DYNAMIC CAROUSEL SECTION -->
+  <section class="carousel-section">
+    <button class="carousel-btn prev" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="carousel-btn next" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+    
+    <div class="carousel-container" id="carouselContainer">
+      
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <div class="carousel-img">
+          <img src="images/feature1.png" alt="Blended Energy Refreshers" onerror="this.src='https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800';">
+        </div>
+        <div class="carousel-text">
+          <h2>New Blended Energy Refreshers</h2>
+          <p>Now you can order your favorite Energy Refreshers frozen for an ultra-refreshing way to power up.</p>
+          <a href="#" class="btn-order-now">Order now</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <div class="carousel-img">
+          <img src="images/feature2.png" alt="S'mores Frappuccino" onerror="this.src='https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800';">
+        </div>
+        <div class="carousel-text" style="background-color: #004d33;">
+          <h2>Last chance for s’mores</h2>
+          <p>Savor every last marshmallowy, milk-chocolaty sip before they’re gone for the season.</p>
+          <a href="#" class="btn-order-now">Order now</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <div class="carousel-img">
+          <img src="images/feature3.png" alt="Starbucks Summer" onerror="this.src='https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800';">
+        </div>
+        <div class="carousel-text" style="background-color: #2d5a27;">
+          <h2>It’s Starbucks summer</h2>
+          <p>Enticing new flavors and returning favorites are here so you can savor the season.</p>
+          <a href="#" class="btn-order-now">Explore Summer</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Indicator Dots -->
+    <div class="carousel-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+    </div>
+  </section>
+
   <!-- BANNERS CONTAINER -->
   <main class="banner-container">
-
-    <!-- Banner 1 -->
-    <section class="banner-row">
-      <div class="banner-img">
-        <img src="images/feature1.png" alt="New Blended Energy Refreshers" 
-             onerror="this.onerror=null; this.src='images/feature1.PNG'; if(!this.complete) this.src='images/feature1.jpg'; if(!this.complete) this.src='feature1.png';">
-      </div>
-      <div class="banner-text">
-        <h2>New Blended Energy Refreshers</h2>
-        <p>Now you can order your favorite Energy Refreshers frozen for an ultra-refreshing way to power up. Try a flavor you already love or new Passionfruit Guava.</p>
-        <a href="#" class="btn-order-now">Order now</a>
-      </div>
-    </section>
-
-    <!-- Banner 2 (Reverse) -->
     <section class="banner-row reverse">
       <div class="banner-img">
-        <img src="images/feature2.png" alt="Last chance for smores" 
-             onerror="this.onerror=null; this.src='images/feature2.PNG'; if(!this.complete) this.src='images/feature2.jpg'; if(!this.complete) this.src='feature2.png';">
-      </div>
-      <div class="banner-text">
-        <h2>Last chance for s’mores</h2>
-        <p>S’mores Frappuccino® Blended Beverage—made with the original recipe—and S’mores Cold Brew are leaving soon. Savor every last marshmallowy, milk-chocolaty sip before they’re gone.</p>
-        <a href="#" class="btn-order-now-filled">Order now</a>
-      </div>
-    </section>
-
-    <!-- Banner 3 -->
-    <section class="banner-row">
-      <div class="banner-img">
-        <img src="images/feature3.png" alt="Starbucks summer" 
-             onerror="this.onerror=null; this.src='images/feature3.PNG'; if(!this.complete) this.src='images/feature3.jpg'; if(!this.complete) this.src='feature3.png';">
-      </div>
-      <div class="banner-text">
-        <h2>It’s Starbucks summer</h2>
-        <p>Enticing new flavors and returning favorites are here so you can savor the season to the very last drop. Experience new Tropical Butterfly Refreshers, reunite with Horchata and more.</p>
-      </div>
-    </section>
-
-    <!-- Banner 4 (Reverse) -->
-    <section class="banner-row reverse">
-      <div class="banner-img">
-        <img src="images/feature4.png" alt="Passionfruit Guava Refreshers" 
-             onerror="this.onerror=null; this.src='images/feature4.PNG'; if(!this.complete) this.src='images/feature4.jpg'; if(!this.complete) this.src='feature4.png';">
+        <img src="images/feature4.png" alt="Passionfruit Guava Refreshers" onerror="this.src='https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800';">
       </div>
       <div class="banner-text">
         <h2>New Passionfruit Guava Refreshers</h2>
-        <p>A vibrant, juicy drink crafted with mango-pineapple flavored pearls. Add lemonade or coconutmilk and your choice of energy.</p>
+        <p>A vibrant, juicy drink crafted with mango-pineapple flavored pearls. Add lemonade or coconutmilk.</p>
         <a href="#" class="btn-order-now">Order now</a>
       </div>
     </section>
-
-    <!-- Banner 5 -->
-    <section class="banner-row">
-      <div class="banner-img">
-        <img src="images/feature5.png" alt="Protein Boost" 
-             onerror="this.onerror=null; this.src='images/feature5.PNG'; if(!this.complete) this.src='images/feature5.jpg'; if(!this.complete) this.src='feature5.png';">
-      </div>
-      <div class="banner-text">
-        <h2>Go-to favorites + protein boost</h2>
-        <p>Add up to 23g of protein per grande. Iced Vanilla Protein Cream Shaken Espresso, Vanilla Protein Cream Cold Brew, Iced Banana Cream Protein Matcha.</p>
-        <a href="#" class="btn-order-now">Order now</a>
-      </div>
-    </section>
-
   </main>
 
   <!-- FOOTER -->
@@ -392,66 +452,86 @@
         <h4>About Us</h4>
         <a href="#">Our Company</a>
         <a href="#">Our Coffee</a>
-        <a href="#">About Starbucks</a>
-        <a href="#">Starbucks Archive</a>
-        <a href="#">Investor Relations</a>
         <a href="#">Customer Service</a>
-        <a href="#">Contact Us</a>
       </div>
       <div class="col">
         <h4>Careers</h4>
         <a href="#">Culture and Values</a>
-        <a href="#">Belonging at Starbucks</a>
-        <a href="#">College Achievement Plan</a>
-        <a href="#">Alumni Community</a>
         <a href="#">U.S. Careers</a>
-        <a href="#">International Careers</a>
       </div>
       <div class="col">
         <h4>Social Impact</h4>
         <a href="#">Communities</a>
-        <a href="#">Starbucks Foundation</a>
         <a href="#">Sustainability</a>
-        <a href="#">Environmental and Social Impact Reporting</a>
       </div>
       <div class="col">
-        <h4>For Business Partners</h4>
-        <a href="#">Landlord Support Center</a>
+        <h4>For Business</h4>
         <a href="#">Suppliers</a>
-        <a href="#">Corporate Gift Card Sales</a>
-        <a href="#">Office and Foodservice Coffee</a>
+        <a href="#">Corporate Gift Cards</a>
       </div>
       <div class="col">
-        <h4>Order and Pick Up</h4>
+        <h4>Order & Pick Up</h4>
         <a href="#">Order on the App</a>
-        <a href="#">Order on the Web</a>
         <a href="#">Delivery</a>
-        <a href="#">Order and Pick Up Options</a>
-        <a href="#">Explore and Find Coffee for Home</a>
       </div>
     </div>
-
     <hr>
-
     <div class="social-icons">
       <i class="fa-brands fa-spotify"></i>
       <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-pinterest"></i>
       <i class="fa-brands fa-instagram"></i>
       <i class="fa-brands fa-youtube"></i>
-      <i class="fa-brands fa-x-twitter"></i>
     </div>
-
     <div class="privacy-links">
       <a href="#">Privacy Notice</a> |
       <a href="#">Terms of Use</a> |
-      <a href="#">Do Not Share My Personal Information</a> |
-      <a href="#">CA Supply Chain Act</a> |
       <a href="#">Cookie Preferences</a>
     </div>
-
     <p class="copyright">© 2026 Starbucks Coffee Company. All rights reserved.</p>
   </footer>
+
+  <!-- JAVASCRIPT FOR CAROUSEL -->
+  <script>
+    const container = id => document.getElementById(id);
+    const carouselContainer = container('carouselContainer');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = container('prevBtn');
+    const nextBtn = container('nextBtn');
+
+    let currentIndex = 0;
+
+    function updateCarousel(index) {
+      if (index < 0) {
+        currentIndex = slides.length - 1;
+      } else if (index >= slides.length) {
+        currentIndex = 0;
+      } else {
+        currentIndex = index;
+      }
+
+      carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+    nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const index = parseInt(e.target.dataset.index);
+        updateCarousel(index);
+      });
+    });
+
+    // Auto Slide every 5 seconds
+    setInterval(() => {
+      updateCarousel(currentIndex + 1);
+    }, 5000);
+  </script>
 
 </body>
 </html>
