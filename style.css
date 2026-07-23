@@ -84,7 +84,7 @@ body {
 
 /* SUB-BANNER */
 .top-subbanner {
-  background-color: #2D382E;
+  background-color: #1e3932;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -105,12 +105,110 @@ body {
   font-weight: 600;
 }
 
+/* DYNAMIC CAROUSEL SECTION */
+.carousel-section {
+  position: relative;
+  max-width: 100%;
+  margin: 32px 0;
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  min-height: 480px;
+}
+
+.carousel-img {
+  flex: 1;
+  width: 50%;
+  background-color: #f2f0eb;
+}
+
+.carousel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-text {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 48px;
+  background-color: #006241;
+  color: #ffffff;
+}
+
+.carousel-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.carousel-text p {
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+/* CAROUSEL BUTTONS & DOTS */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.carousel-btn.prev { left: 20px; }
+.carousel-btn.next { right: 20px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #ffffff;
+}
+
 /* BANNERS CONTAINER */
 .banner-container {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding-top: 32px;
 }
 
 .banner-row {
@@ -126,6 +224,7 @@ body {
 .banner-img {
   flex: 1;
   width: 50%;
+  background-color: #f2f0eb;
 }
 
 .banner-img img {
@@ -144,7 +243,7 @@ body {
   align-items: center;
   text-align: center;
   padding: 48px;
-  background-color: #006241;
+  background-color: #1e3932;
   color: #ffffff;
 }
 
@@ -152,7 +251,6 @@ body {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
-  letter-spacing: 0.5px;
 }
 
 .banner-text p {
@@ -160,7 +258,6 @@ body {
   line-height: 1.6;
   max-width: 500px;
   margin-bottom: 30px;
-  font-weight: 400;
 }
 
 .btn-order-now {
@@ -172,16 +269,6 @@ body {
   font-weight: 600;
   font-size: 15px;
   background: transparent;
-}
-
-.btn-order-now-filled {
-  background-color: #ffffff;
-  color: #006241;
-  padding: 9px 22px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 15px;
 }
 
 /* FOOTER */
@@ -211,11 +298,6 @@ body {
   color: #6b6b6b;
   font-size: 16px;
   margin-bottom: 16px;
-  line-height: 1.4;
-}
-
-.col a:hover {
-  color: #000000;
 }
 
 hr {
@@ -229,14 +311,12 @@ hr {
   gap: 20px;
   font-size: 28px;
   margin-bottom: 24px;
-  color: #000000;
 }
 
 .privacy-links {
   color: #212121;
   font-size: 14px;
   display: flex;
-  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -251,29 +331,12 @@ hr {
   font-size: 13px;
 }
 
-/* MOBILE RESPONSIVE (MEDIA QUERY) */
+/* MOBILE RESPONSIVE */
 @media screen and (max-width: 768px) {
-  .navbar {
-    padding: 16px 20px;
-  }
-  .nav-links, .find-store {
-    display: none;
-  }
-
-  .banner-row, .banner-row.reverse {
-    flex-direction: column;
-  }
-
-  .banner-img, .banner-text {
-    width: 100%;
-  }
-
-  .footer {
-    padding: 32px 20px;
-  }
-
-  .footer-columns {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+  .navbar { padding: 16px 20px; }
+  .nav-links, .find-store { display: none; }
+  .carousel-slide, .banner-row, .banner-row.reverse { flex-direction: column; }
+  .carousel-img, .carousel-text, .banner-img, .banner-text { width: 100%; }
+  .footer { padding: 32px 20px; }
+  .footer-columns { grid-template-columns: 1fr; gap: 24px; }
 }
